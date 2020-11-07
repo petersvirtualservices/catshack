@@ -164,8 +164,13 @@ class ShowThemTheCat extends React.Component {
     const maxKey = getUserPersonality(this.props.answers);
     return (
       <div id='final-screen'>
-        <div id='results'>{this.props.username}, your quiz results identify you as personality type {personalityLabels[maxKey]}</div>
+        <h2 id='results'>{this.props.username}, your quiz results identify you as personality type {personalityLabels[maxKey]}</h2>
         <img src={personalities[maxKey]} />
+        <br/>
+        <h2>Find similar cats in a shelter near you:</h2>
+        <img src={personalities[0]} />
+        <img src={personalities[1]} />
+        <img src={personalities[2]} />
       </div>
     )
   }
