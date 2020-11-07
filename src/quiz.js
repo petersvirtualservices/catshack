@@ -60,7 +60,7 @@ export const questions = [
 ]
 
 export const personalities = [
-  a, b, c, d, e, f, //g,
+  a, b, c, d, e, f, 
 ]
 
 export const personalityLabels = [
@@ -69,5 +69,4 @@ export const personalityLabels = [
   "Cat's Cat",
   'Cantankerous Cat',
   'Inquisitive Cat',
-  //'Funny',
 ]

@@ -23,7 +23,7 @@ class App extends React.Component {
 
   saveUsername(e) {
     const username = this.state.username;
-    const url = server.url + '/api/save_username';
+    const url = server.url + '/routes/api/save_username';
     axios.post(url, {username: username}).then(response => {});
     this.setState({route: 'quiz'});
   }
@@ -36,7 +36,7 @@ class App extends React.Component {
     if (this.state.answers.length === questions.length){
       const personalityIndex = getUserPersonality(answers);
       const personalityLabel = personalityLabels[personalityIndex];
-      axios.post(server.url + '/userDatabaseSave', {
+      axios.post(server.url + '/routes/userDatabaseSave', {
         username: username,
         catpersonality: personalityLabel,
       })

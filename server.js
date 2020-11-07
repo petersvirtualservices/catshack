@@ -77,7 +77,7 @@ var doc1 = new UserModel({ username: "test", catpersonality: "test" });
 * Routes
 **/
 
-app.post('/api/save_username', (req, res) => {
+/* app.post('/api/save_username', (req, res) => {
   // store the username to the session
   req.session.username = req.body.username;
   res.json({username: req.body.username});
@@ -88,7 +88,6 @@ app.post('/userDatabaseSave', (req, res) => {
   const username = req.body.username;
   const personalityLabel = req.body.catpersonality;
   var doc1 = new UserModel({ username: username, catpersonality: personalityLabel });
-  console.log(req.body);
   doc1.save(function(err, doc) {
     if (err) return console.error(err);
     console.log("Document inserted succussfully!");
@@ -115,8 +114,7 @@ app.post('/api/insert', (req, res) =>{
 
 app.get('/', (req,res) => {
   res.sendFile('build/index.html');
-});
-
+}); */
 
 // specify the port to use
 var PORT = process.env.PORT || 4000;
