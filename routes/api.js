@@ -1,10 +1,15 @@
 
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/catshack', {
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/catshack',
+  {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  });
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
   
   /**
   * Mongo
@@ -28,8 +33,8 @@ mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/catshack', {
     username: String,
     catpersonality: String,
   });   
-  const UserModel = mongoose.model('User', userSchema);
-  var doc1 = new UserModel({ username: "test", catpersonality: "test" });
+  const UserModel = mongoose.model('Users', userSchema);
+  //var doc1 = new UserModel({ username: "test", catpersonality: "test" });
 
 module.exports = (app) => {
     app.post('/userDatabaseSave', (req, res) => {
