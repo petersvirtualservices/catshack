@@ -1,9 +1,7 @@
 # catshack
 
-This is the readme file....
+# Introduction
+This app is designed to match your personalities with your future cat's.
 
-asdf
-asd
-fas
-df
-as
+# URL
+https://catshack.herokuapp.com/
