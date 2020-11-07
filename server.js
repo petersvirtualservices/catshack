@@ -8,6 +8,16 @@ const api = require('./routes/api');
 
 let app = express();
 
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/catshack',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
+
 // add middleware
 app.use(cors());
 app.use(express.json());
