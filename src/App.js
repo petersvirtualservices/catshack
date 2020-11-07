@@ -171,6 +171,9 @@ class ShowThemTheCat extends React.Component {
         <img src={personalities[0]} />
         <img src={personalities[1]} />
         <img src={personalities[2]} />
+        <br />
+        <h2> Want to try again?</h2>
+        <button onClick={this.props.saveUsername}>Start The Quiz</button>
       </div>
     )
   }
