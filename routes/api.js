@@ -37,6 +37,7 @@ mongoose.connect(
   //var doc1 = new UserModel({ username: "test", catpersonality: "test" });
 
 module.exports = (app) => {
+  console.log(app);
     app.post('/userDatabaseSave', (req, res) => {
         const username = req.body.username;
         const personalityLabel = req.body.catpersonality;
@@ -49,6 +50,7 @@ module.exports = (app) => {
     });
     
     app.get('/', (req,res) => {
+        console.log('text');
         res.sendFile('./build/index.html');
       });
       return app;

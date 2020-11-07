@@ -38,7 +38,7 @@ class App extends React.Component {
     if (this.state.answers.length === questions.length){
       const personalityIndex = getUserPersonality(answers);
       const personalityLabel = personalityLabels[personalityIndex];
-      axios.post(server.url + '/userDatabaseSave', {
+      axios.post('/userDatabaseSave', {
         username: username,
         catpersonality: personalityLabel,
       })
