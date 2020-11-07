@@ -32,14 +32,15 @@ const db = mysql.createPool({
 }); */
 
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://cpeters:password@cluster0.wstcx.mongodb.net/<catshackdatabase>?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+//const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://cpeters:<password>@cluster0.wstcx.mongodb.net/<dbname>?retryWrites=true&w=majority";
+;
+/* const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
   client.close();
-});
+}); */
 
 
 mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/catshack', {
