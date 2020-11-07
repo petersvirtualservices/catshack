@@ -15,6 +15,7 @@ class App extends React.Component {
     this.setUsername = this.setUsername.bind(this)
     this.saveUsername = this.saveUsername.bind(this)
     this.saveQuizAnswer = this.saveQuizAnswer.bind(this)
+    this.restartQuiz = this.restartQuiz.bind(this)
   }
 
   setUsername(e) {
@@ -22,10 +23,11 @@ class App extends React.Component {
   }
 
   saveUsername(e) {
-    const username = this.state.username;
-    const url = server.url + '/api/save_username';
-    axios.post(url, {username: username}).then(response => {});
     this.setState({route: 'quiz'});
+  }
+
+  restartQuiz(e) {
+    this.setState({route: 'welcome', answers: []});
   }
 
   saveQuizAnswer(val) {
@@ -73,6 +75,7 @@ class App extends React.Component {
             ? <ShowThemTheCat 
                 answers={this.state.answers}
                 username={this.state.username} 
+                restartQuiz = {this.restartQuiz}
             />
             : null
           }
@@ -173,7 +176,7 @@ class ShowThemTheCat extends React.Component {
         <img src={personalities[2]} />
         <br />
         <h2> Want to try again?</h2>
-        <button onClick={this.setState({route: 'quiz'})}>Start The Quiz</button>
+        <button onClick={() => {this.props.restartQuiz()}}>Start The Quiz</button>
       </div>
     )
   }

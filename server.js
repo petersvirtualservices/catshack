@@ -4,15 +4,18 @@ var session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const api = require('./routes/api');
 
-// initialize the app
-const app = express();
+let app = express();
 
 // add middleware
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('build'));
+
+// initialize the app
+app = api(app);
 
 // add session middleware
 app.set('trust proxy', 1);
@@ -30,47 +33,6 @@ const db = mysql.createPool({
   password: 'password',
   database: 'catshackdatabase',
 }); */
-
-
-//const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://cpeters:password@cluster0.wstcx.mongodb.net/catshackdatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("catshackdatabase").collection("users");
-  // perform actions on the collection object
-  client.close();
-}); 
-
-
-mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/catshack', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-/**
-* Mongo
-**/
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function() {  
-});
-
-/* const orgSchema = new mongoose.Schema({
-  name: String,
-  organization: String,
-  phone: String,
-  address: String,
-  cats: String,
-  catdescriptions: String,
-  password: String,
-}); */
-
-const userSchema = new mongoose.Schema({
-  username: String,
-  catpersonality: String,
-});   
-const UserModel = mongoose.model('User', userSchema);
-var doc1 = new UserModel({ username: "test", catpersonality: "test" });
 
 
 /**
