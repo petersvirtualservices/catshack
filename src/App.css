@@ -42,7 +42,8 @@
 }
 
 h1 {
-  background: lightblue;
+  background: rgb(202, 51, 76);
+  color: white;
   margin: 0;
   padding: 30px;
 }
@@ -68,7 +69,8 @@ input#name {
 button {
   padding: 10px;
   border: none;
-  background: lightblue;
+  color: white;
+  background:   rgb(202, 51, 76);
   font-weight: 800;
   border-radius: 4px;
 }
