@@ -31,6 +31,8 @@ const db = mysql.createPool({
   database: 'catshackdatabase',
 }); */
 
+mongodb+srv://cpeters:<password>@cluster0.wstcx.mongodb.net/<catshackdatabase>?retryWrites=true&w=majority
+
 mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/catshack', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
