@@ -1,6 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
-var session = require('express-session')
+var session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -20,7 +20,7 @@ app.use(session({
   secret: 'topsecret',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: true },
 }));
 
 /* // initialize the db
@@ -31,7 +31,16 @@ const db = mysql.createPool({
   database: 'catshackdatabase',
 }); */
 
-mongodb+srv://cpeters:<password>@cluster0.wstcx.mongodb.net/<catshackdatabase>?retryWrites=true&w=majority
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://cpeters:<password>@cluster0.wstcx.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
 
 mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/catshack', {
   useNewUrlParser: true,
