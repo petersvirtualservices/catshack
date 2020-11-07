@@ -32,11 +32,11 @@ const db = mysql.createPool({
 }); */
 
 
-const MongoClient = require('mongodb').MongoClient;
+//const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://cpeters:password@cluster0.wstcx.mongodb.net/catshackdatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
-  const collection = client.db("catshackdatabase").collection("User");
+  const collection = client.db("catshackdatabase").collection("users");
   // perform actions on the collection object
   client.close();
 }); 
