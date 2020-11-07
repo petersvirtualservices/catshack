@@ -8,8 +8,6 @@ const api = require('./routes/api');
 
 let app = express();
 
-
-
 // add middleware
 app.use(cors());
 app.use(express.json());
