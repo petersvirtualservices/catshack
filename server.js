@@ -33,7 +33,7 @@ const db = mysql.createPool({
 
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://cpeters:<password>@cluster0.wstcx.mongodb.net/<catshackdatabase>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://cpeters:password@cluster0.wstcx.mongodb.net/<catshackdatabase>?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
@@ -45,7 +45,6 @@ client.connect(err => {
 mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/catshack', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: true,
 });
 
 /**
