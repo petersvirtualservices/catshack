@@ -1,5 +1,12 @@
-
 const mongoose = require('mongoose');
+
+/**
+* Mongo
+**/
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+});
 
 mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/catshack',
@@ -10,14 +17,6 @@ mongoose.connect(
     useFindAndModify: false
   }
 );
-
-/**
-* Mongo
-**/
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-});
 
 /* const orgSchema = new mongoose.Schema({
   name: String,
@@ -52,8 +51,8 @@ module.exports = (app) => {
   });
 
   app.get('/', (req, res) => {
-    console.log('text');
-    res.sendFile('./build/index.html');
+    console.log('hello');
+    res.sendFile('./client/public/index.html', { root: '.' })
   });
   return app;
 }
