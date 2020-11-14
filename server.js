@@ -5,13 +5,22 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const api = require('./routes/api');
+const passport = require('passport');
+const passportlocal = require('passport-local');
+const cookieParser = require('cookie-parser');
+
 
 let app = express();
 
 // add middleware
-app.use(cors());
-app.use(express.json());
+//app.use(cors());
+//app.use(express.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true
+}))
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
@@ -29,6 +38,8 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: true },
 }));
+
+app.use(cookieParser("topsecret"))
 
 // specify the port to use
 var PORT = process.env.PORT || 3001;

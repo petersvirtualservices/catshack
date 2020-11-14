@@ -33,11 +33,9 @@ const userSchema = new mongoose.Schema({
   catpersonality: String,
 });
 const UserModel = mongoose.model('Users', userSchema);
-//var doc1 = new UserModel({ username: "test", catpersonality: "test" });
 
 //nginx does not allow for post requests from static pages
 module.exports = (app) => {
-  //console.log(app);
   app.post('/userDatabaseSave', (req, res) => {
     console.log(req)
     const username = req.body.username;
@@ -45,9 +43,47 @@ module.exports = (app) => {
     var doc1 = new UserModel({ username: username, catpersonality: personalityLabel });
     doc1.save(function (err, doc) {
       if (err) return console.error(err);
-      console.log("Document inserted succussfully!");
+      console.log("Document inserted successfully!");
     });
     res.json({ status: "success" });
+  });
+
+  app.post('/orgDatabaseSave', (req, res) => {
+    console.log(req)
+    const name = req.body.name;
+    const organization = req.body.organization;
+    const phone =req.body.state.phone;
+    const address =req.body.state.address;
+    const cats =req.body.state.cats;
+    const catdescription = req.body.catdescripton;
+    const password = req.body.password;
+ 
+    var doc1 = new UserModel({ 
+      name: name,
+      organization: organization,
+      phone: phone,
+      address: address,
+      cats: cats,
+      catdescription: catdescription,
+      password: password
+    });
+
+    doc1.save(function (err, doc) {
+      if (err) return console.error(err);
+      console.log("Document inserted successfully!");
+    });
+    res.json({ status: "success" });
+
+  app.post("/login", (req, res) => {
+    console.log(req.body);
+  });
+
+  app.post("/register", (req, res) => {
+    console.log(req.body);
+  });
+
+  app.post("/user", (req, res) => {
+    console.log(req.body);
   });
 
   app.get('/', (req, res) => {
@@ -55,4 +91,4 @@ module.exports = (app) => {
     res.sendFile('./client/public/index.html', { root: '.' })
   });
   return app;
-}
+  })}
