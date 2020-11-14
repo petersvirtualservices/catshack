@@ -8,7 +8,7 @@ const api = require('./routes/api');
 const passport = require('passport');
 const passportlocal = require('passport-local');
 const cookieParser = require('cookie-parser');
-
+const morgan = require("morgan");
 
 let app = express();
 
@@ -24,7 +24,12 @@ app.use(cors({
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"))
+  app.use(express.static("build"))
+}
+
+app.get("*", (req, res) =>
+    res.sendFile(path.resolve("build", "index.html"))
+  );
 }
 
 // initialize the app
