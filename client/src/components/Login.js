@@ -12,7 +12,7 @@ class Login extends React.Component {
       return (
         <div>
 
-          <button onClick={() => {this.props.loginOrg()}}>Start The Quiz</button>
+          <button onClick={() => {this.props.loginOrg()}}>Login</button>
         </div>
       )
     }
