@@ -11,6 +11,7 @@ class RegisterOrg extends React.Component {
 
         return (
             <div>
+                <p> Test</p>
                 <label for="name">Name:</label>
                 <input name="name" id="name" />
                 <label for="organization">Organization</label>

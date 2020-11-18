@@ -9,6 +9,7 @@ const passport = require('passport');
 const passportlocal = require('passport-local');
 const cookieParser = require('cookie-parser');
 const morgan = require("morgan");
+const path = require('path');
 
 let app = express();
 
@@ -30,7 +31,6 @@ if (process.env.NODE_ENV === "production") {
 app.get("*", (req, res) =>
     res.sendFile(path.resolve("build", "index.html"))
   );
-}
 
 // initialize the app
 app = api(app);
@@ -44,7 +44,7 @@ app.use(session({
   cookie: { secure: true },
 }));
 
-app.use(cookieParser("topsecret"))
+app.use(cookieParser("topsecret"));
 
 // specify the port to use
 var PORT = process.env.PORT || 3001;

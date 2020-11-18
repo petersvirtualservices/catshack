@@ -3,11 +3,14 @@ import axios from 'axios';
 import Quiz from './components/Quiz';
 import ShowThemTheCat from './components/ShowThemTheCat';
 import Welcome from './components/Welcome';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 import Login from './components/Login';
 import RegisterOrg from './components/Register';
 import { questions, personalityLabels } from './quiz';
 import { getUserPersonality } from './utils'
 import './App.css';
+import {server} from './config.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +24,7 @@ class App extends React.Component {
     this.saveUsername = this.saveUsername.bind(this)
     this.saveQuizAnswer = this.saveQuizAnswer.bind(this)
     this.restartQuiz = this.restartQuiz.bind(this)
-    this.registerOrg = this.registerOrg.bind(this)
+    this.registerOrg = this.registerOrgHere.bind(this)
     this.loginOrg = this.loginOrg.bind(this)
   }
 
@@ -29,7 +32,7 @@ class App extends React.Component {
 
   fetchAPIMessage = async () => {
     try {
-      const res = await fetch(`/api/message`);
+      const res = await fetch(server + '/api/message');
       const { message } = await res.json();
       this.setState({ message });
     } catch (err) {
@@ -37,45 +40,7 @@ class App extends React.Component {
     }
   };
 
- /*  AppHere () {
-  const [registerUsername, setRegisterUsername] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [loginUsername, setLoginUsername] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [data, setData] = useState(null);
-  const register = () => {
-    Axios({
-      method: "POST",
-      data: {
-        username: registerUsername,
-        password: registerPassword,
-      },
-      withCredentials: true,
-      url: "http://localhost:4000/register",
-    }).then((res) => console.log(res));
-  };
-  const login = () => {
-    Axios({
-      method: "POST",
-      data: {
-        username: loginUsername,
-        password: loginPassword,
-      },
-      withCredentials: true,
-      url: "http://localhost:4000/login",
-    }).then((res) => console.log(res));
-  };
-  const getUser = () => {
-    Axios({
-      method: "GET",
-      withCredentials: true,
-      url: "http://localhost:4000/user",
-    }).then((res) => {
-      setData(res.data);
-      console.log(res.data);
-    });
-  };  
-}; */
+
 
   setUsername(e) {
     this.setState({ username: e.target.value });
@@ -85,8 +50,8 @@ class App extends React.Component {
     this.setState({ route: 'quiz' });
   }
 
-  registerOrg(e) {
-    this.setState({ route: 'register' });
+  registerOrgHere(e) {
+    this.setState({ route: 'Register' });
   }
 
   loginOrg(e) {
@@ -122,7 +87,7 @@ class App extends React.Component {
         password: password
     });
     //Is an if statement necessary?
-      axios.post('/orgDatabaseSave', {
+      axios.post(server + '/orgDatabaseSave', {
         name: name,
         organization: organization,
         phone: phone,
@@ -147,7 +112,7 @@ class App extends React.Component {
     if (this.state.answers.length === questions.length) {
       const personalityIndex = getUserPersonality(answers);
       const personalityLabel = personalityLabels[personalityIndex];
-      axios.post('/userDatabaseSave', {
+      axios.post(server + '/userDatabaseSave', {
         username: username,
         catpersonality: personalityLabel,
       })
@@ -164,6 +129,7 @@ class App extends React.Component {
     return (
       <div id='container'>
         <div className='App'>
+          <Navbar />
           <h1>Cat Shack</h1>
 
           {this.state.route === 'welcome'
@@ -180,7 +146,7 @@ class App extends React.Component {
             : null
           }
 
-          {this.state.route === 'register'
+          {this.state.route === 'Register'
             ? <RegisterOrg
               name={this.state.name}
               organization={this.state.organization}
@@ -211,6 +177,7 @@ class App extends React.Component {
             : null
           }
         </div>
+        <Footer />
       </div>
     );
   }

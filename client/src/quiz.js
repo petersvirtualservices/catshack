@@ -63,9 +63,9 @@ export const personalities = [
 ]
 
 export const personalityLabels = [
-  'Human Cat',
-  'Hunter Cat',
-  "Cat's Cat",
-  'Cantankerous Cat',
-  'Inquisitive Cat',
+  'Human Cat (RagDoll)',
+  'Hunter Cat (American Shorthair)',
+  "Cat's Cat (Spynx)",
+  'Cantankerous Cat (Siamese)',
+  'Inquisitive Cat (Maine Coon)',
 ]
