@@ -24,7 +24,7 @@ class App extends React.Component {
     this.saveUsername = this.saveUsername.bind(this)
     this.saveQuizAnswer = this.saveQuizAnswer.bind(this)
     this.restartQuiz = this.restartQuiz.bind(this)
-    this.registerOrg = this.registerOrgHere.bind(this)
+    this.registerOrgHere = this.registerOrgHere.bind(this)
     this.loginOrg = this.loginOrg.bind(this)
   }
 
@@ -121,7 +121,8 @@ class App extends React.Component {
           {this.state.route === 'welcome'
             ? <Welcome
               setUsername={this.setUsername}
-              saveUsername={this.saveUsername} />
+              saveUsername={this.saveUsername}
+              registerOrgHere = {this.registerOrgHere} />
             : null
           }
 

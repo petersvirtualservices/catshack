@@ -6,7 +6,7 @@ class Welcome extends React.Component {
       return (
         <div id='welcome'>
           <h2>Where Fur Pals Can Get Together</h2>
-          <a href="/Register" onClick={RegisterOrg}>Register</a>
+          <button onClick={this.props.registerOrgHere}>Register</button>
           <p>We joke about how cats love us when we are needed elsewhere, but in truth, we would not trade that type of demanding behavior for anything in the world; in fact, even when that truth has been stereotypically ingrained in our rationale, we still run to local animal shelters and pet stores to buy these lovable creatures. </p>
           <p>The Cat Shack is designed to help make that transition smoother. After you take our in-depth, under-utilizing scientific quiz, you will be paired with a celebrity cat, who will help you relate to other similar cats available for adoption.</p>
           <div>
