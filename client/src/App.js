@@ -28,20 +28,6 @@ class App extends React.Component {
     this.loginOrg = this.loginOrg.bind(this)
   }
 
-  componentDidMount = () => this.fetchAPIMessage();
-
-  fetchAPIMessage = async () => {
-    try {
-      const res = await fetch(server + '/api/message');
-      const { message } = await res.json();
-      this.setState({ message });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-
-
   setUsername(e) {
     this.setState({ username: e.target.value });
   }

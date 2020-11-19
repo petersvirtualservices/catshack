@@ -24,13 +24,7 @@ app.use(cors({
 }))
 
 // Serve up static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"))
-}
-
-app.get("*", (req, res) =>
-    res.sendFile(path.resolve("build", "index.html"))
-  );
+app.use(express.static("client/build"))
 
 // initialize the app
 app = api(app);
@@ -44,7 +38,7 @@ app.use(session({
   cookie: { secure: true },
 }));
 
-app.use(cookieParser("topsecret"));
+//app.use(cookieParser("topsecret"));
 
 // specify the port to use
 var PORT = process.env.PORT || 3001;

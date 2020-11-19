@@ -42,7 +42,7 @@ module.exports = (app) => {
   app
     .route('/')
     .get((req, res) => {
-      res.sendFile('./client/public/index.html', { root: '.' })
+      res.sendFile('./client/build/index.html', { root: '.' })
     })
  
   return app
