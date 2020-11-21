@@ -6,7 +6,8 @@ import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
-import RegisterOrg from './components/Register';
+import AnimalCards from './components/AnimalCards'
+import Register from './components/Register';
 import { questions, personalityLabels } from './quiz';
 import { getUserPersonality } from './utils'
 import './App.css';
@@ -19,13 +20,30 @@ class App extends React.Component {
       username: '',
       route: 'welcome',
       answers: [],
+      animals: [],
     }
     this.setUsername = this.setUsername.bind(this)
     this.saveUsername = this.saveUsername.bind(this)
     this.saveQuizAnswer = this.saveQuizAnswer.bind(this)
     this.restartQuiz = this.restartQuiz.bind(this)
-    this.registerOrgHere = this.registerOrgHere.bind(this)
-    this.loginOrg = this.loginOrg.bind(this)
+    this.register = this.register.bind(this)
+    this.login = this.login.bind(this)
+    this.setRoute = this.setRoute.bind(this)
+  }
+
+  componentDidMount(){
+    const self=this;
+    axios.get(server + '/api/petfinderget')
+    .then(response => {
+      self.setState({
+        animals: response.data.animals,
+      })
+    })
+
+  }
+
+  setRoute(e) {
+    this.setState({ route: 'animals' });
   }
 
   setUsername(e) {
@@ -36,11 +54,11 @@ class App extends React.Component {
     this.setState({ route: 'quiz' });
   }
 
-  registerOrgHere(e) {
+  register(e) {
     this.setState({ route: 'Register' });
   }
 
-  loginOrg(e) {
+  login(e) {
     this.setState({ route: 'login' });
   }
 
@@ -48,39 +66,28 @@ class App extends React.Component {
     this.setState({ route: 'welcome', answers: [] });
   }
 
-  registerCat(val) {
-    const name = this.state.name;
-    const organization = this.state.organization;
-    const phone = this.state.phone;
-    const address = this.state.address;
-    const cats = this.state.cats;
-    const catdescription = this.state.catdescripton;
+  
+  registerNow(val) {
+    const firstName = this.state.firstName;
+    const lastName = this.state.lastName;
+    const email = this.state.email;
     const password = this.state.password;
-    name.push(val);
-    organization.push(val);
-    phone.push(val);
-    address.push(val);
-    cats.push(val);
-    catdescription.push(val);
+    firstName.push(val);
+    lastName.push(val);
+    email.push(val);
     password.push(val);
     this.setState({
-      name: name,
-        organization: organization,
-        phone: phone,
-        address: address,
-        cats: cats,
-        catdescription: catdescription,
-        password: password
+      firstName: firstName,
+      lastName:lastName,
+      email: email,
+      password:password
     });
     //Is an if statement necessary?
       axios.post(server + '/orgDatabaseSave', {
-        name: name,
-        organization: organization,
-        phone: phone,
-        address: address,
-        cats: cats,
-        catdescription: catdescription,
-        password: password
+        firstName: firstName,
+        lastName:lastName,
+        email: email,
+        password:password
       })
         .then(function (response) {
           console.log(response);
@@ -116,13 +123,12 @@ class App extends React.Component {
       <div id='container'>
         <div className='App'>
           <Navbar />
-          <h1>Cat Shack</h1>
 
           {this.state.route === 'welcome'
             ? <Welcome
               setUsername={this.setUsername}
               saveUsername={this.saveUsername}
-              registerOrgHere = {this.registerOrgHere} />
+              register = {this.register} />
             : null
           }
 
@@ -133,8 +139,8 @@ class App extends React.Component {
             : null
           }
 
-          {this.state.route === 'Register'
-            ? <RegisterOrg
+          {this.state.route === 'register'
+            ? <Register
               name={this.state.name}
               organization={this.state.organization}
               phone={this.state.phone}
@@ -155,11 +161,19 @@ class App extends React.Component {
             : null
           }
 
-          {this.state.answers.length === questions.length
+          {this.state.answers.length === questions.length && this.state.route != 'animals'
             ? <ShowThemTheCat
               answers={this.state.answers}
               username={this.state.username}
+              setRoute={this.setRoute}
               restartQuiz={this.restartQuiz}
+            />
+            : null
+          }
+
+            {this.state.route === 'animals'
+            ? <AnimalCards
+              results = {this.state.animals}
             />
             : null
           }

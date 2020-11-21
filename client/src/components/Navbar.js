@@ -22,11 +22,13 @@ class Navbar extends React.Component {
     <div id='navbar'>
       <AppBar position="static">
         <Toolbar>
-        <MyButton color="inherit" id="homeBtn" onClick={this.props.restartQuiz}>HOME</MyButton>
-          <Typography variant="h6" >
+          <Typography variant="h1" >
             Cat Shack
           </Typography>
+          <br />
           <MyButton color="inherit" id="loginBtn" onClick={this.props.loginOrg}>LOGIN</MyButton>
+          <MyButton color="inherit" id="homeBtn" onClick={this.props.restartQuiz}>HOME</MyButton>
+          <MyButton color="inherit" id="registerBtn" onClick={this.props.register}>REGISTER</MyButton>
         </Toolbar>
       </AppBar>
     </div>

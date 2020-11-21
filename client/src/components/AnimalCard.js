@@ -8,7 +8,6 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 
-import PetsIcon from "@material-ui/icons/Pets";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +63,6 @@ const AnimalCard = (props) => {
           backgroundColor: "rgb(200,200,200)",
         }}
       >
-        <PetsIcon fontSize={"large"} />
         <span>No Photo Found</span>
       </div>
     );

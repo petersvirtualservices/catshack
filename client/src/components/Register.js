@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-class RegisterOrg extends React.Component {
+class Register extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -12,40 +12,29 @@ class RegisterOrg extends React.Component {
         return (
             <div>
                 <p> Register Your Cat</p>
-                <label for="name">Name:</label>
+                <label for="firstName">First Name:</label>
                 < br />
-                <input name="name" id="name" />
+                <input name="firstName" id="firstName" />
                 < br />
-                <label for="organization">Organization</label>
+                <label for="lastName"> Last Name:</label>
                 < br />
-                <input name="organization" id="organization" />
+                <input name="lastName" id="lastName" />
                 < br />
-                <label for="phone">Phone</label>
+                <label for="email">Email:</label>
                 < br />
-                <input name="phone" id="phone" />
+                <input type="email" name="email" id="email" />
                 < br />
-                <label for="address">Address</label>
-                < br />
-                <input name="address" id="address" />
-                < br />
-                <label for="cats">Cat Type</label>
-                < br />
-                <input name="cats" id="cats" />
-                < br />
-                <label for="catdescription">Description of Cat</label>
-                < br />
-                <input name="catdescription" id="catdescription" />
-                < br />
-                <label for="password">Password</label>
+                <label for="password">Password:</label>
                 < br />
                 <input name="password" id="password" />
                 < br />
                 < br />
+                < br />
 
-                <button onClick={() => { this.props.registerCat() }}>Register Cat</button>
+                <button onClick={() => { this.props.registerNow() }}>Register Cat</button>
             </div>
         )
     }
 }
 
-export default RegisterOrg
+export default Register

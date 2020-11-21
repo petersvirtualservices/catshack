@@ -42,10 +42,10 @@
 }
 
 h1 {
-  background: rgb(202, 51, 76);
   color: white;
   margin: 0;
   padding: 30px;
+  text-align:center;
 }
 
 h2 {
@@ -66,13 +66,13 @@ input#name {
   border-radius: 4px;
 }
 
-button {
-  padding: 10px;
-  border: none;
-  color: white;
-  background:   rgb(202, 51, 76);
-  font-weight: 800;
-  border-radius: 4px;
+#startQuiz{
+background: blue;
+border: 0;
+border-radius: 3;
+color: white;
+height: 43;
+padding: 20px;
 }
 
 #question-container {
@@ -92,6 +92,3 @@ button {
   color: #777;
 }
 
-div {
-  text-align: center;
-}
